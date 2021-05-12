@@ -13,6 +13,17 @@ Overview
     e. If we pass a parameter containing 'clean'  to 'build.sh', after the test, both the helloapp container and related image will be destroyed to clean the environment.
     f. we use Jenkins pipeline to retreive the code from the GitHub and execute 'build.sh' on the related Linux server where docker is running with the version which is above 17.05.
     
+ The work flow is as below:
+ 
+ start ---> Jenkins pipeline ----->pull code from GitHub to 1 slave linux server ------> run 'build.sh' on the slave Linux server----> compiling hello project using 'maven' 
+ -----> creating image which hosts the hello app ----> starting container ----> test ----> remove the intermidiate images----> end
+ 
+ If you do not have Jenkins installed, the work flow is as below:
+ 
+ pull code from GitHub to one linux server ------> run 'build.sh' on the Linux server----> compiling hello project using 'maven' (performed by build.sh)
+ -----> creating image which hosts the hello app (performed by build.sh)----> starting container (build.sh)----> test(build.sh)----> remove the intermidiate images(build.sh)
+ ----> end
+    
 Below is the details:
 
 

@@ -50,36 +50,27 @@ Below is the details:
 
    we can use Jenkins pipeline to execute the following 2 steps in order to make things easy:
    
-    a. Fetching the code from the GitHub.
-   
-    b. Executing the 'build.sh' script remotely and get the test result from there.
+      a. Fetching the code from the GitHub.
+      b. Executing the 'build.sh' script remotely and get the test result from there.
    
 4. build.sh 
 
    The build.sh script will perform the following functions:
    
-    a. Checking if the Docker service is running.
-   
-    b. Compiling java code using 'maven' image.
-   
-    c. Creating the final image which hosts the 'hello app'.
-   
-    d. Starting the container.
-   
-    e. Performing test which will send some request to the api address and check if it receive 'HTTP/1.1 200'.
-   
-    f. Deleting the intermidiate images.
-   
-    g. Stop & destroy the container and image if you pass a parameter containing 'clean' to the 'build.sh'.
+        a. Checking if the Docker service is running.
+        b. Compiling java code using 'maven' image.
+        c. Creating the final image which hosts the 'hello app'.
+        d. Starting the container.
+        e. Performing test which will send some request to the api address and check if it receive 'HTTP/1.1 200'.
+        f. Deleting the intermidiate images.
+        g. Stop & destroy the container and image if you pass a parameter containing 'clean' to the 'build.sh'.
    
    
 5. How to use this repostitory:
 
-  	a. Clone the repository.
-  
- 		b. Ensure the docker version is above 17.05 on your linux server.
-  
-  	c. Run './build.sh' script.
+  	    a. Clone the repository.
+        b. Ensure the docker version is above 17.05 on your linux server.
+        c. Run './build.sh' script.
   
   
 6. code review integration

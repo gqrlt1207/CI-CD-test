@@ -1,9 +1,13 @@
 # challenge
 
+Overview
+
+
+
 
 1. hello app
   
-  The hello application was written in Java and spring boot framework. If you send a request like http://localhost:8081/hello with the verbose outcome, you will see 'HTTP/1.1 200' and get a json response as below:
+  The hello application was written in Java and spring boot framework. If you send a request like http://localhost:8081/hello with the verbose parameter '-v' when using 'curl' command on Linux server, you will see 'HTTP/1.1 200' and get a json response as below:
   
     {"id": 1, "info": "welcome"}.
   

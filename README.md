@@ -52,6 +52,7 @@ Below is the details:
    
       a. Fetching the code from the GitHub.
       b. Executing the 'build.sh' script remotely and get the test result from there.
+      
    
 4. build.sh 
 

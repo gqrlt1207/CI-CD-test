@@ -50,9 +50,9 @@ Below is the details:
 
    we can use Jenkins pipeline to execute the following 2 steps in order to make things easy:
    
-      a. Fetching the code from the GitHub.
+          a. Fetching the code from the GitHub.
       
-      b. Executing the 'build.sh' script remotely and get the test result from there.
+          b. Executing the 'build.sh' script remotely and get the test result from there.
       
    
 4. build.sh 

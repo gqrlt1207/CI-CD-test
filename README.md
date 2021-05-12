@@ -92,6 +92,15 @@ Below is the details:
   
 6. code review integration
 
+    For code review, we can create a 'pull request' and send to peer to review and approve.
+    I created one for this practice:
+    
+    https://github.com/gqrlt1207/challenge/pull/1
+    
+    We can also use some tool to scan the code which is also helpful.
+
 7. security review integration
+
+    we can use some tool to scan the code to ensure there is no vulnerbility in our code, like SonarQube etc.
    
    

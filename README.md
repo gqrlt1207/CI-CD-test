@@ -11,7 +11,7 @@ Overview
     c. The 'build.sh' script will perform some test to ensure the hello app is up and running. According to the test in my laptop, it ususally takes around 20 seconds for the 
         hello app to function properly. So, we put a 'for' loop to check repeadly until it get the correct outcome or time out.
     d. The 'build.sh' script will automatically delete the intermidate images and only keep the final image which is around 123 MB.
-    e. If we pass a parameter 'clean' to 'build.sh', after the test, both the helloapp container and related image will be destroyed to restore the environment before compiling.
+    e. If we pass a parameter containing 'clean'  to 'build.sh', after the test, both the helloapp container and related image will be destroyed to restore the environment before compiling.
     f. we use Jenkins pipeline to retreive the code from the GitHub and execute 'build.sh' on the related Linux server where docker is installed and running.
     
 Below is the details:
@@ -37,7 +37,45 @@ Below is the details:
      
 2. docker image and container
 
+   In order to reduce the size of the final image, we use the multi-stages builds to create the related images, 2 for compiling, 2 for the hello app.
+   Only the small basic jre image is included in the image,  all the middle images will be deleted automatically after the building.
+   
+   Because we use multi-stage builds, the minimum Docker version is 17.05, please check your docker version, if it's below 17.05, you may need to upgrade your docker.
+   The below is a link about how to upgrade the docker:
+   
+   https://docs.docker.com/engine/install/centos/
+   
+   
+3. Jenkins Integration
 
+   we can use Jenkins pipeline to execute the following 2 steps in order to make things easy.
+   
+   a. Fetching the code from the GitHub.
+   b. Executing the 'build.sh' script remotely and get the test result from there.
+   
+4. build.sh 
+
+   The build.sh script will perform the following functions:
+   
+   a. Checking if the Docker service is running.
+   b. Compiling java code using 'maven' image.
+   c. Creating the final image which hosts the 'hello app'.
+   d. Starting the container.
+   e. Performing test.
+   f. Deleting the intermidiate images.
+   g. Stop & destroy the container and image if you pass a parameter containing 'clean' to the 'build.sh'.
+   
+   
+5. How to use this repostitory.
+
+  a. Clone the repository.
+  b. Ensure the docker version is above 17.05 on your linux server.
+  c. Run './build.sh' script.
   
-    
-     
+  That's all
+  
+6. code review integration
+
+7. security review integration
+   
+   

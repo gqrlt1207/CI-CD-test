@@ -64,9 +64,9 @@ Below is the details:
    
     c. Creating the final image which hosts the 'hello app'.
    
-     d. Starting the container.
+    d. Starting the container.
    
-     e. Performing test which will send some request to the api address and check if it receive 'HTTP/1.1 200'.
+    e. Performing test which will send some request to the api address and check if it receive 'HTTP/1.1 200'.
    
     f. Deleting the intermidiate images.
    
@@ -75,11 +75,11 @@ Below is the details:
    
 5. How to use this repostitory:
 
-  a. Clone the repository.
+  	a. Clone the repository.
   
-  b. Ensure the docker version is above 17.05 on your linux server.
+ 		b. Ensure the docker version is above 17.05 on your linux server.
   
-  c. Run './build.sh' script.
+  	c. Run './build.sh' script.
   
   
 6. code review integration

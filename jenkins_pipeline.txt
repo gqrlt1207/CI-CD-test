@@ -1,29 +1,27 @@
 Jenkins pipeline:
 
 pipeline {
-    agent { label 'centos7-v1'}
-    stages {
+	agent { label 'centos7-v1'}
+    	stages {
         stage('Code Checkout') {
-            steps {
-               
+            steps {               
                 dir("/home/jenkins/challenge"){
                 script {
                     try {
                         sh script: 'git pull origin release'
 					} catch (Exception e) {
-					    echo "Critical Failure"
-						//deleteDir()
+					  	echo "Critical Failure"
+					    	//deleteDir()
 						sh script: 'git clone https://github.com/gqrlt1207/challenge.git'
 					}
-                }
+                	}
                 }
             }
 				
         }
 		
 		
-		stage('Build hello app'){
-			//agent { label 'centos7-v1' }
+	stage('Build hello app'){			
             steps {
                     echo "Start to build hello app:"
                     println((new Date()).format("YYYYMMdd-HH:mm:ss"))
@@ -39,7 +37,7 @@ pipeline {
                         println((new Date()).format("YYYYMMdd-HH:mm:ss"))
                     }
 		
-			}
 		}
+	}
     }
 }

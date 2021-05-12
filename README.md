@@ -2,7 +2,19 @@
 
 Overview
 
-
+  The purpose of this mini-project is to create a simple hello project, and then build this project using docker and deploy it to a container. Aside from that, we need to integrate the different parts to implement Continueous Integrationg and Continueous Deployment.
+  
+  The design for this mini-project is as below:
+  
+    a. Creatng a Java project and implement the simplae function, when receiving some request, response properly.
+    b. Writing a bash script 'build.sh' which will uses 'docker' to compile the 'hello' java project and create a final image which contains hello app.
+    c. The 'build.sh' script will perform some test to ensure the hello app is up and running. According to the test in my laptop, it ususally takes around 20 seconds for the 
+        hello app to function properly. So, we put a 'for' loop to check repeadly until it get the correct outcome or time out.
+    d. The 'build.sh' script will automatically delete the intermidate images and only keep the final image which is around 123 MB.
+    e. If we pass a parameter 'clean' to 'build.sh', after the test, both the helloapp container and related image will be destroyed to restore the environment before compiling.
+    f. we use Jenkins pipeline to retreive the code from the GitHub and execute 'build.sh' on the related Linux server where docker is installed and running.
+    
+Below is the details:
 
 
 1. hello app

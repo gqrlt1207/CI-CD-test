@@ -48,32 +48,32 @@ Below is the details:
    
 3. Jenkins Integration
 
-   we can use Jenkins pipeline to execute the following 2 steps in order to make things easy.
+   we can use Jenkins pipeline to execute the following 2 steps in order to make things easy:
    
-   a. Fetching the code from the GitHub.
+    a. Fetching the code from the GitHub.
    
-   b. Executing the 'build.sh' script remotely and get the test result from there.
+    b. Executing the 'build.sh' script remotely and get the test result from there.
    
 4. build.sh 
 
    The build.sh script will perform the following functions:
    
-   a. Checking if the Docker service is running.
+    a. Checking if the Docker service is running.
    
-   b. Compiling java code using 'maven' image.
+    b. Compiling java code using 'maven' image.
    
-   c. Creating the final image which hosts the 'hello app'.
+    c. Creating the final image which hosts the 'hello app'.
    
-   d. Starting the container.
+     d. Starting the container.
    
-   e. Performing test which will send some request to the api address and check if it receive 'HTTP/1.1 200'.
+     e. Performing test which will send some request to the api address and check if it receive 'HTTP/1.1 200'.
    
-   f. Deleting the intermidiate images.
+    f. Deleting the intermidiate images.
    
-   g. Stop & destroy the container and image if you pass a parameter containing 'clean' to the 'build.sh'.
+    g. Stop & destroy the container and image if you pass a parameter containing 'clean' to the 'build.sh'.
    
    
-5. How to use this repostitory.
+5. How to use this repostitory:
 
   a. Clone the repository.
   
@@ -81,7 +81,6 @@ Below is the details:
   
   c. Run './build.sh' script.
   
-  That's all
   
 6. code review integration
 

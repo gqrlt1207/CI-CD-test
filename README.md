@@ -53,7 +53,22 @@ Below is the details:
           a. Fetching the code from the GitHub.
       
           b. Executing the 'build.sh' script remotely and get the test result from there.
-      
+    
+    Below is the screenshot of the pipeline:
+        
+        Step 11/11 : ENTRYPOINT ["java", "-jar", "/hello.jar"]
+        ---> Running in 47ca92e4cf8a
+        Removing intermediate container 47ca92e4cf8a
+        ---> 8f11d8f13833
+        Successfully built 8f11d8f13833
+        Successfully tagged hello:latest
+        fd99a7252f2f6bebfb5deee4459edc01c5da95c098b0f4a198cb804a4f29b106
+        application is not ready, wait ...
+        application is not ready, wait ...
+        application is not ready, wait ...
+        application is not ready, wait ...
+        < HTTP/1.1 200 
+        Test is successful.
    
 4. build.sh 
 

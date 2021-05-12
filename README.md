@@ -6,7 +6,7 @@ Overview
   
   The design for this mini-project is as below:
   
-    a. Creatng a Java project and implement the simplae function, when receiving some request, response properly.
+    a. Creatng a Java project and implement the simple REST API functions, when receiving some request, response properly.
     b. Writing a bash script 'build.sh' which will uses 'docker' to compile the 'hello' java project and create a final image which contains hello app.
     c. The 'build.sh' script will perform some test to ensure the hello app is up and running. According to the test in my laptop, it ususally takes around 20 seconds for the 
         hello app to function properly. So, we put a 'for' loop to check repeadly until it get the correct outcome or time out.

@@ -112,6 +112,6 @@ Below is the details:
 
 7. security review integration
 
-    we can use some tool to scan the code to ensure there is no vulnerbility in our code, like SonarQube etc.
+    we can use some tool to scan the code to ensure there is no vulnerbility in our code, like sonar-scanner from SonarQube etc.
    
    

@@ -1,6 +1,6 @@
 # challenge
 
-# Overview
+Overview
 
   The purpose of this mini-project is to create a simple hello project, build this project and deploy it to container. Besides that, we also need to streamline those separated steps to implement CI/CD. With more and more business moving to internet, Security review integration becomes more important, so it's also one of the goals of this project.
   

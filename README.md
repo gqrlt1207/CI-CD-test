@@ -121,15 +121,16 @@ Below is the details:
 
     I use SonarQube to perform security scan when I compile the code using the docker, below is the snippet from the Dockerfile2:
     
-    RUN mvn sonar:sonar \
-      -Dsonar.projectKey=hello \
-      -Dsonar.host.url=http://${ip-address}:9000 \
-      -Dsonar.login=${token}
+          RUN mvn sonar:sonar \
+          -Dsonar.projectKey=hello \
+          -Dsonar.host.url=http://${ip-address}:9000 \
+          -Dsonar.login=${token}
       
    In order to run the above command, we need to get the 2 parameters: 
    
-    a: ${ip-address} which is used to communicate among the dockers
-    b: ${token} which is used to access the sonar server
+        a: ${ip-address} which is used to communicate among the dockers
+    
+        b: ${token} which is used to access the sonar server
     
    We can use the following command to get the internal ip address of SonarQube server:
    

@@ -1,0 +1,43 @@
+Jenkins pipeline:
+
+pipeline {
+	agent { label 'centos7-v1'}
+    	stages {
+        stage('Code Checkout') {
+            steps {               
+                dir("/home/jenkins/challenge"){
+                script {
+                    try {
+                        sh script: 'git pull origin release'
+					} catch (Exception e) {
+					  	echo "Critical Failure"
+					    	//deleteDir()
+						sh script: 'git clone https://github.com/gqrlt1207/challenge.git'
+					}
+                	}
+                }
+            }
+				
+        }
+		
+		
+	stage('Build hello app'){			
+            steps {
+                    echo "Start to build hello app:"
+                    println((new Date()).format("YYYYMMdd-HH:mm:ss"))
+
+                    timeout(time: 5, unit: 'MINUTES') {
+                        dir("/home/jenkins/challenge"){
+                        script {
+                                    sh script: 'sudo ./build.sh'
+                                    return true
+                            }
+                        }
+                        
+                        println((new Date()).format("YYYYMMdd-HH:mm:ss"))
+                    }
+		
+		}
+	}
+    }
+}

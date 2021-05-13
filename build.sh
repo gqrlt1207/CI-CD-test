@@ -8,7 +8,7 @@ init_variable() {
     app="helloapp"
     testlog="/tmp/test.out"
     appimage="hello:latest"
-    sonarqube_installed=false
+    sonarqube_installed="false"
     return 0
 }
 
@@ -27,7 +27,7 @@ build_app() {
         return 1
     fi
    
-    if ! sonarqube_installed; then  
+    if [ ${sonarqube_installed} == "true" ]; then  
     	docker build -t hello  -f- ./ < Dockerfile
     else
 	docker build -t hello -f- ./ < Dockerfiletmp
@@ -71,13 +71,17 @@ sonarqube_integration() {
 	rm -f Dockerfiletmp
         cp -p Dockerfile2 Dockerfiletmp
 
-	docker ps |grep -i sonarqube
+	docker container list |grep -i sonarqube
 	if [ $? -eq 0 ]; then
-		echo "sonarqube is running."
-		sonarqube_installed=true
+		echo "sonarqube is installed."
+		sonarqube_installed="true"
 		return 1
 	fi
 
+	docker stop sonarqube
+        docker rm sonarqube
+        docker rmi sonarqube:latest
+	
 	docker pull sonarqube
 	docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
 
@@ -157,7 +161,7 @@ restore() {
     fi
 
 
-    if ! sonarqube_installed; then
+    if [ ${sonarqube_installed} == "false" ]; then
 	docker stop sonarqube
 	docker rm sonarqube
 	docker rmi sonarqube:latest

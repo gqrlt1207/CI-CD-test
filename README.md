@@ -59,7 +59,7 @@ Below is the details:
    https://docs.docker.com/engine/install/centos/
    
    
-3. Jenkins Integration
+3. Jenkins Integration (jenkins_pipeline.txt file)
 
    we can use Jenkins pipeline to execute only the following 2 steps to complete our task which makes life easier:
    

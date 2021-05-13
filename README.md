@@ -142,6 +142,13 @@ Below is the details:
       
    If the Sonar server was installed before, the default credential will not work, so there is no way to get the token, in this scenario, 'build.sh' will skip security scan.
    
+   Dockerfile is used when there is no way to get the token to access the sonarqube server. Dockerfile2 is used as a template to create Dockerfiletmp which is used to perform security scan and other operations. The ip-address and token will be replaced in Dockertmp file.
+   
+  ## Summary:
+  
+   This practice is very helpful in making us better understand the whole process of CI/CD. It's worth to spend time on it. 
+   
+   
    
    
       

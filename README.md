@@ -126,7 +126,7 @@ Below is the details:
           -Dsonar.host.url=http://${ip-address}:9000 \
           -Dsonar.login=${token}
       
-   In order to run the above command, we need to get the 2 parameters: 
+   In order to run the above command, we need to get the value of the following 2 parameters: 
    
         a: ${ip-address} which is used to communicate among the dockers
     

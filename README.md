@@ -2,27 +2,29 @@
 
 Overview
 
-  The purpose of this mini-project is to create a simple hello project, and then build this project and deploy it using docker and container technology. Besides that, we also need to integrate the different parts to implement Continueous Integrationg and Continueous Deployment automatically.
+  The purpose of this mini-project is to create a simple hello project, build this project and deploy it to container. Besides that, we also need to stremline those separated steps to implement CI/CD. With more and more business move to internet, Security review integration is also one of the goals of this project.
   
   The design for this mini-project is as below:
   
     a. Creating a Java project and implement the simple REST API, when the app receives a request, it will response properly.
-    b. Writing a bash script 'build.sh' which will use 'docker' to compile the 'hello' java project and create a final image which hosts hello app and the jre.
+    b. Writing a bash script 'build.sh' which will use 'docker' to compile the 'hello' java project, perform security scan using SonarQube tool, create a final image which hosts hello app and the jre enrionment.
     c. The 'build.sh' script will perform some test to ensure the hello app works as expected.
-    d. The 'build.sh' script will automatically delete the intermidate images and only keep the final image which is around 123 MB.
+    d. The 'build.sh' script will automatically delete the intermediate images and only keep the final image which is around 123 MB.
     e. If we pass a parameter containing 'clean'  to 'build.sh', after the test, both the helloapp container and related image will be destroyed to clean the environment.
     f. we use Jenkins pipeline to retreive the code from the GitHub and execute 'build.sh' on the related Linux server where docker is running with the version which is above 17.05.
     
  The work flow is as below:
  
  start ---> Jenkins pipeline ----->pull code from GitHub to 1 slave linux server ------> run 'build.sh' on the slave Linux server----> compiling hello project using 'maven' 
- -----> creating image which hosts the hello app ----> starting container ----> test ----> remove the intermidiate images----> end
+ ----->scan the code using SonarQube tool---> creating image which hosts the hello app ----> starting container ----> test ----> remove the intermidiate images----> end
  
  If you do not have Jenkins installed, the work flow is as below:
  
- pull code from GitHub to one linux server ------> run 'build.sh' on the Linux server----> compiling hello project using 'maven' (performed by build.sh)
- -----> creating image which hosts the hello app (performed by build.sh)----> starting container (build.sh)----> test(build.sh)----> remove the intermidiate images(build.sh)
+ pull code from GitHub to one linux server ------> run 'build.sh' on the Linux server----> compiling hello project using 'maven'
+ ----->scan the code using SonarQube tool----> creating image which hosts the hello app----> starting container----> test----> remove the intermidiate images
  ----> end
+ 
+ Most of the tasks are executed by 'build.sh' script which is the main part of this project.
     
 Below is the details:
 
@@ -81,12 +83,14 @@ Below is the details:
         < HTTP/1.1 200 
         Test is successful.
    
+   In order to run the Jenkins pipeline, we need to install 'git' and clone the repository to make it work smoothly.
+   
 4. build.sh 
 
    The build.sh script will perform the following functions:
    
         a. Checking if the Docker service is running.
-        b. Compiling java code using 'maven' image.
+        b. Compiling java code using 'maven' image and perform security scan using SonarQube tool.
         c. Creating the final image which hosts the 'hello app'.
         d. Starting the container.
         e. Performing test which will send some request to the api address and check if it receive 'HTTP/1.1 200'.
@@ -103,7 +107,7 @@ Below is the details:
   
 6. code review integration
 
-    For code review, we can create a 'pull request' and send to peer to review and approve.
+    For code review, we can create a 'pull request' and send to peer to review and approve whenever we make any change to the codes.
     I created one for this practice:
     
     https://github.com/gqrlt1207/challenge/pull/1
@@ -112,6 +116,31 @@ Below is the details:
 
 7. security review integration
 
-    we can use some tool to scan the code to ensure there is no vulnerbility in our code, like sonar-scanner from SonarQube etc.
+    we use SonarQube to perform security scan when we compiling the code using the docker, below is the snippet of that task:
+    
+    RUN mvn sonar:sonar \
+      -Dsonar.projectKey=hello \
+      -Dsonar.host.url=http://${ip-address}:9000 \
+      -Dsonar.login=${token}
+      
+   In order to run the above command, we need to get the 2 parameters: 
+   
+    a: ${ip-address} which is used to communicate among the dockers
+    b: ${token} which is used to access the sonar server
+    
+   We can use the following command to get the internal ip address of SonarQube:
+   
+      docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sonarqube
+   
+   To generate the 'token', we can use the default username/password  : admin/admin to send a api request to create it as below:
+   
+      curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "name=${user_tokenName}" -u admin:admin localhost:9000/api/user_tokens/generate
+      
+   If the Sonar server was installed before, the default credential will not work, so there is no way to get the token, in this scenario, 'build.sh' will skip security scan.
+   
+   
+   
+      
+  
    
    

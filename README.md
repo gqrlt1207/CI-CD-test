@@ -134,11 +134,11 @@ Below is the details:
     
    We can use the following command to get the internal ip address of SonarQube server:
    
-      docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sonarqube
+          docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sonarqube
    
    To generate the 'token', we can use the default username/password  : admin/admin to send a api request to create it as below:
-   
-      curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "name=${user_tokenName}" -u admin:admin localhost:9000/api/user_tokens/generate
+    
+          curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "name=${user_tokenName}" -u admin:admin localhost:9000/api/user_tokens/generate
       
    If the Sonar server was installed before, the default credential will not work, so there is no way to get the token, in this scenario, 'build.sh' will skip security scan.
    

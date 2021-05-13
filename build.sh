@@ -87,8 +87,15 @@ sonarqube_integration() {
 
 	sonarqube_ip=`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sonarqube`
 	echo ${sonarqube_ip}
-	sleep 90
+	sleep 120
+	
 	curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "name=hello" -u admin:admin http://localhost:9000/api/user_tokens/generate > /tmp/test.out
+	
+	if [ $? -ne 0 ]; then
+		sleep 120
+		curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "name=hello" -u admin:admin http://localhost:9000/api/user_tokens/generate > /tmp/test.out
+
+	fi
 
 	grep -Po '"token":.*?[^\\]",' /tmp/test.out > token_info
 

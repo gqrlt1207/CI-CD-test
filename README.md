@@ -47,7 +47,7 @@ Below is the details:
      
   If you want to access this API remotely, you may need to open the 8081 port in your firewall and replace the 'localhost' with the related ip address.
      
-2. docker image and container
+2. docker image and container (Dockerfile & Dockerfile2)
 
    In order to reduce the size of the final image, we use the multi-stages builds to create the related images, 2 for compiling, 2 for the hello app etc.
    Only the small basic jre image and the compiled jar file are included in the final image,  all the middle images will be deleted automatically after the building.

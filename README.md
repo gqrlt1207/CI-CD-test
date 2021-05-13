@@ -1,6 +1,6 @@
 # challenge
 
-Overview
+# Overview
 
   The purpose of this mini-project is to create a simple hello project, build this project and deploy it to container. Besides that, we also need to streamline those separated steps to implement CI/CD. With more and more business moving to internet, Security review integration becomes more important, so it's also one of the goals of this project.
   
@@ -144,9 +144,9 @@ Below is the details:
    
    Dockerfile is used when there is no way to get the token to access the sonarqube server. Dockerfile2 is used as a template to create Dockerfiletmp which is used to perform security scan and other operations. The ip-address and token will be replaced in Dockertmp file.
    
-  ## Summary:
+  # Summary:
   
-   This practice is very helpful in making us better understand the whole process of CI/CD. It's worth to spend time on it. 
+   This practice is very helpful in making me better understand the whole process of CI/CD. It's worth spending time on it. 
    
    
    

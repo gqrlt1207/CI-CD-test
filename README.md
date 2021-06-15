@@ -144,10 +144,7 @@ Below is the details:
    
    Dockerfile is used when there is no way to get the token to access the sonarqube server. Dockerfile2 is used as a template to create Dockerfiletmp which is used to perform security scan and other operations. The ip-address and token will be replaced in Dockertmp file.
    
-  # Summary:
-  
-   This practice is very helpful in making me better understand the whole process of CI/CD. It's worth spending time on it. 
-   
+ 
    
    
    

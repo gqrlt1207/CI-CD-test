@@ -119,6 +119,7 @@ test_app() {
             echo "application is not ready, wait ..."
             sleep 6
         else
+	    cat ${tsetlog}
             echo "Test is successful."
             break
         fi
@@ -136,7 +137,7 @@ clean_images() {
    
     docker rmi ${baseimage} 
     for i in `docker image ls |grep -v hello|grep -v sonarqube |grep -v TAG |awk '{print $3}' `; do
-        docker image rm $i
+        docker image rm $i -f
     done
 
     if [ $? -ne 0 ]; then
